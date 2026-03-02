@@ -4,7 +4,7 @@ BFS utilise une file (FIFO) pour explorer le labyrinthe.
 Il explore niveau par niveau, ce qui garantit le chemin le plus court.
 """
 
-import time
+from time import perf_counter_ns
 from collections import deque
 
 
@@ -37,7 +37,7 @@ def bfs(labyrinthe):
             elif labyrinthe[i][j] == 'G':
                 arrivee = (i, j)
 
-    debut_temps = time.time()
+    t0 = perf_counter_ns()
 
     # File FIFO : on utilise deque pour des opérations efficaces
     # (popleft est O(1) avec deque, contre O(n) avec une liste)
@@ -61,13 +61,13 @@ def bfs(labyrinthe):
 
         # Si on a trouvé l'arrivée
         if position == arrivee:
-            fin_temps = time.time()
+            t1 = perf_counter_ns()
             return {
                 'chemin': chemin,
                 'explores': explores,
                 'noeuds_explores': len(explores),
                 'longueur': len(chemin),
-                'temps': (fin_temps - debut_temps) * 1000
+                'temps': (t1 - t0) / 1_000_000
             }
 
         # Explorer les voisins

@@ -4,8 +4,7 @@ DFS utilise une pile (LIFO) pour explorer le labyrinthe.
 Il avance le plus loin possible avant de revenir en arrière.
 """
 
-import time
-
+from time import perf_counter_ns
 
 def dfs(labyrinthe):
     """
@@ -34,7 +33,7 @@ def dfs(labyrinthe):
             elif labyrinthe[i][j] == 'G':
                 arrivee = (i, j)
 
-    debut_temps = time.time()
+    t0 = perf_counter_ns()
 
     # La pile contient des tuples (position_actuelle, chemin_parcouru)
     pile = [(depart, [depart])]
@@ -56,13 +55,13 @@ def dfs(labyrinthe):
 
         # Si on a trouvé l'arrivée, on a terminé !
         if position == arrivee:
-            fin_temps = time.time()
+            t1 = perf_counter_ns()
             return {
                 'chemin': chemin,
                 'explores': explores,
                 'noeuds_explores': len(explores),
                 'longueur': len(chemin),
-                'temps': (fin_temps - debut_temps) * 1000  # en ms
+                'temps': (t1 - t0) / 1_000_000  # en ms
             }
 
         # Explorer les voisins dans l'ordre : droite, bas, gauche, haut
