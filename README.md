@@ -15,8 +15,12 @@ Ce projet implémente trois algorithmes de recherche pour résoudre un labyrinth
 ## Prérequis
 
 - Python 3.11
+- numpy
+- matplotlib
 
-Aucune dépendance externe requise.
+```bash
+pip install -r requirements.txt
+```
 
 ## Exécution
 
@@ -32,6 +36,7 @@ Devoir_I/
   dfs.py           # Implémentation de DFS
   bfs.py           # Implémentation de BFS
   astar.py         # Implémentation de A*
+  visualisation.py # Visualisation graphique (matplotlib)
   main.py          # Point d'entrée principal
   requirements.txt # Dépendances
   README.md        # Documentation
@@ -46,3 +51,4 @@ Le programme génère un labyrinthe aléatoire avec une seed pour la reproductib
 - La liste des coordonnées du chemin
 - Les statistiques (noeuds explorés, longueur du chemin, temps d'exécution)
 - Un tableau comparatif des trois algorithmes
+- Une visualisation graphique comparative (`comparaison_algorithmes.png`)
